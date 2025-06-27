@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dkn3skib5f4qp"]
+
+[ext_resource type="Texture2D" uid="uid://dbbvk26aear3f" path="res://Assets/enemy.png" id="1_m1htj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wovta"]
+size = Vector3(0.6, 1, 0.6)
+
+[node name="Enemy" type="CharacterBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_wovta")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+billboard = 2
+texture = ExtResource("1_m1htj")
