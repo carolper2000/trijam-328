@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://ch40vutap57r7"]
+
+[ext_resource type="Script" uid="uid://bpy67fd0qboa6" path="res://Scripts/blood_bullet.gd" id="1_a3nse"]
+[ext_resource type="Texture2D" uid="uid://ccbxpys20d1p2" path="res://Assets/blood_bullet.png" id="1_vlxeq"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_a3nse"]
+radius = 0.0629303
+
+[node name="Bullet" type="CharacterBody3D"]
+script = ExtResource("1_a3nse")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+billboard = 2
+texture = ExtResource("1_vlxeq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_a3nse")

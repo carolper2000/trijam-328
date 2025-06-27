@@ -7,6 +7,9 @@ const JUMP_VELOCITY = 4.5
 
 const MOUSE_SENS = 0.4
 
+var bullet = load("res://Scenes/BloodBullet.tscn")
+@onready var pos = $Head/BulletSpawn
+
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
@@ -37,3 +40,10 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+
+	# Shoot bullet
+	if Input.is_action_just_pressed("click"):
+		var instance = bullet.instantiate()
+		instance.position = pos.global_position
+		instance.transform.basis = pos.global_transform.basis
+		get_parent().add_child(instance)
