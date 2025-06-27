@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cifso8sdesemi"]
+[gd_scene load_steps=6 format=3 uid="uid://cifso8sdesemi"]
 
 [ext_resource type="PackedScene" uid="uid://cvyrnq2fycdqt" path="res://Scenes/Player.tscn" id="1_hpc76"]
+[ext_resource type="AudioStream" uid="uid://ftqoiqx7wi48" path="res://Audio/main-theme.mp3" id="2_tr2i4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hpc76"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -31,3 +32,45 @@ environment = SubResource("Environment_nhkr4")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 shadow_enabled = true
+
+[node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="Environment"]
+stream = ExtResource("2_tr2i4")
+autoplay = true
+
+[node name="GameOverScreen" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 320.0
+offset_top = 240.0
+offset_right = 320.0
+offset_bottom = 240.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Text" type="RichTextLabel" parent="GameOverScreen"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -210.0
+offset_top = -230.0
+offset_right = -110.0
+offset_bottom = -200.0
+grow_horizontal = 2
+text = "GAME OVER"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RetryButton" type="Button" parent="GameOverScreen"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -185.0
+offset_top = -150.0
+offset_right = -135.0
+offset_bottom = -119.0
+grow_horizontal = 2
+text = "Retry"

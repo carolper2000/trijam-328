@@ -1,12 +1,27 @@
-[gd_scene load_steps=4 format=3 uid="uid://cvyrnq2fycdqt"]
+[gd_scene load_steps=10 format=3 uid="uid://cvyrnq2fycdqt"]
 
 [ext_resource type="Script" uid="uid://c5lb3ol44ll84" path="res://Scripts/player.gd" id="1_rpqav"]
+[ext_resource type="AudioStream" uid="uid://m6ol1j1bdwbk" path="res://Audio/Shoot-FX.mp3" id="2_gntrk"]
 [ext_resource type="Texture2D" uid="uid://bvwej6cqpdiq" path="res://Assets/finger_gun.png" id="2_kyqiw"]
+[ext_resource type="Texture2D" uid="uid://bdi5a3fwmgvjn" path="res://Assets/blood_bar.png" id="4_dewec"]
+[ext_resource type="FontFile" uid="uid://dip5eyt0igeqh" path="res://Fonts/Jersey15-Regular.ttf" id="5_5ixxa"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qbkls"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ixxa"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dewec"]
+bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="FontVariation" id="FontVariation_nn08x"]
+base_font = ExtResource("5_5ixxa")
+
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_rpqav")
+
+[node name="BloodBulletShot" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_gntrk")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.985, 0)
@@ -20,57 +35,52 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 [node name="BulletSpawn" type="Node3D" parent="Head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.545145, -0.136711, -0.790885)
 
-[node name="CanvasGroup" type="Control" parent="."]
+[node name="PlayerGUI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
 
-[node name="Sprite2D" type="Sprite2D" parent="CanvasGroup"]
+[node name="Sprite2D" type="Sprite2D" parent="PlayerGUI"]
 texture = ExtResource("2_kyqiw")
 centered = false
 
-[node name="BloodMeter" type="Control" parent="CanvasGroup"]
+[node name="BloodMeter" type="Control" parent="PlayerGUI"]
 anchors_preset = 0
-offset_top = 10.0
-offset_right = 50.0
-offset_bottom = 70.0
+offset_right = 320.0
+offset_bottom = 240.0
 
-[node name="Background" type="ColorRect" parent="CanvasGroup/BloodMeter"]
+[node name="ProgressBar" type="ProgressBar" parent="PlayerGUI/BloodMeter"]
+layout_mode = 0
+offset_left = 225.0
+offset_top = 6.0
+offset_right = 237.0
+offset_bottom = 136.0
+rotation = 1.5708
+theme_override_styles/background = SubResource("StyleBoxFlat_5ixxa")
+theme_override_styles/fill = SubResource("StyleBoxFlat_dewec")
+max_value = 1.0
+fill_mode = 3
+show_percentage = false
+
+[node name="Overlay" type="TextureRect" parent="PlayerGUI/BloodMeter"]
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 240.0
+texture = ExtResource("4_dewec")
+
+[node name="BloodAmount" type="RichTextLabel" parent="PlayerGUI/BloodMeter"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -6.0
-offset_right = 6.0
-offset_bottom = 40.0
+offset_left = -66.0
+offset_top = 6.0
+offset_right = 66.0
+offset_bottom = 19.0
 grow_horizontal = 2
-color = Color(0.172549, 0, 0, 0.392157)
-
-[node name="Foreground" type="ColorRect" parent="CanvasGroup/BloodMeter/Background"]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 12.0
-offset_bottom = 30.0
-grow_horizontal = 0
-grow_vertical = 0
-rotation = 3.14159
-color = Color(0.686275, 0, 0.0313726, 1)
-
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasGroup/BloodMeter"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -14.5
-offset_top = 40.0
-offset_right = 14.5
-offset_bottom = 52.0
-grow_horizontal = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = SubResource("FontVariation_nn08x")
 theme_override_font_sizes/normal_font_size = 8
-text = "Blood"
+text = "50"
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
