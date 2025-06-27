@@ -7,11 +7,18 @@ const JUMP_VELOCITY = 4.5
 
 const MOUSE_SENS = 0.4
 
+const MAX_BLOOD = 3
+var blood = MAX_BLOOD
+
 var bullet = load("res://Scenes/BloodBullet.tscn")
-@onready var pos = $Head/BulletSpawn
+@onready var Pos = $Head/BulletSpawn
+
+@onready var BloodMeterBackground = $CanvasGroup/BloodMeter/Background
+@onready var BloodMeterForeground = $CanvasGroup/BloodMeter/Background/Foreground
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	updateBloodMeterGUI()
 
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -43,7 +50,29 @@ func _physics_process(delta: float) -> void:
 
 	# Shoot bullet
 	if Input.is_action_just_pressed("click"):
+		if blood == 0:
+			return
 		var instance = bullet.instantiate()
-		instance.position = pos.global_position
-		instance.transform.basis = pos.global_transform.basis
+		instance.position = Pos.global_position
+		instance.transform.basis = Pos.global_transform.basis
 		get_parent().add_child(instance)
+		blood -= 1
+		if blood == 0:
+			gameOver()
+		updateBloodMeterGUI()
+
+func updateBloodMeterGUI():
+	var bloodPercent = float(blood) / float(MAX_BLOOD)
+	var parentYSize = BloodMeterBackground.size.y
+	var newChildYSize = parentYSize * bloodPercent
+	
+	print_debug("blood: " + str(blood))
+	print_debug("bloodPercent: " + str(bloodPercent))
+	print_debug("parentYSize: " + str(parentYSize))
+	print_debug("newChildYSize: " + str(newChildYSize))
+	
+	BloodMeterForeground.set_size(Vector2(BloodMeterForeground.size.x, newChildYSize))
+
+func gameOver():
+	print_debug("gameover")
+	# TODO
