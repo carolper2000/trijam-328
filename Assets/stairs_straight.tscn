@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://xcdql1ysxqny"]
+
+[ext_resource type="PackedScene" uid="uid://cvopngxdg55tx" path="res://Assets/stairs_straight.glb" id="1_k5rj7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k5rj7"]
+
+[node name="stairs_3d" instance=ExtResource("1_k5rj7")]
+
+[node name="Cube3" parent="." index="0"]
+material_override = SubResource("StandardMaterial3D_k5rj7")

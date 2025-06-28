@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://b3jeri7bdqyyy"]
+
+[ext_resource type="PackedScene" uid="uid://c0asb8lw7lyjp" path="res://Assets/element.tscn" id="1_dc5ec"]
+[ext_resource type="PackedScene" uid="uid://bw30iyv12ab86" path="res://Assets/stairs_angle.glb" id="2_si5bl"]
+[ext_resource type="PackedScene" uid="uid://xcdql1ysxqny" path="res://Assets/stairs_straight.tscn" id="3_f6367"]
+
+[node name="Floor" type="Node3D"]
+
+[node name="Object8" parent="." instance=ExtResource("1_dc5ec")]
+transform = Transform3D(4.49951, 0, 19.3809, 0, 0.4, 0, -5.36231, 0, 16.2625, 13.6, 4, 11.4)
+metadata/_custom_type_script = "uid://l6unb7fmhord"
+
+[node name="Object9" parent="." instance=ExtResource("1_dc5ec")]
+transform = Transform3D(7, 0, 0, 0, 0.4, 0, 0, 0, 9, 13.6, 4, 11.4)
+metadata/_custom_type_script = "uid://l6unb7fmhord"
+
+[node name="Object10" parent="." instance=ExtResource("1_dc5ec")]
+transform = Transform3D(-3.0598e-07, 0, 12.285, 0, 0.4, 0, -7, 0, -5.36994e-07, 20.617, 4, 27.6)
+
+[node name="stairs_2sides" parent="." instance=ExtResource("2_si5bl")]
+transform = Transform3D(-1.58345e-07, 0, -3.456, 0, 2.205, 0, 3.6225, 0, -1.51067e-07, 20.6, 0, 20.4)
+
+[node name="stairs_3d" parent="." instance=ExtResource("3_f6367")]
+transform = Transform3D(9.65216, 0, -3.27822, 0, 2.19, 0, 8.09912, 0, 3.90683, 13.6402, 0, 11.3642)
+visible = false

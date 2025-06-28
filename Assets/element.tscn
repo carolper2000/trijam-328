@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0asb8lw7lyjp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_32rtt"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_32rtt"]
+material = SubResource("StandardMaterial3D_32rtt")
+
+[node name="Object" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, 0.5)
+mesh = SubResource("BoxMesh_32rtt")
+skeleton = NodePath("")
