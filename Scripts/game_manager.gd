@@ -6,6 +6,10 @@ extends Node
 
 # https://docs.godotengine.org/en/stable/getting_started/first_3d_game/05.spawning_mobs.html
 
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("restart"):
+		get_tree().reload_current_scene()
+
 func _on_mob_timer_timeout():
 	# Create a new instance of the Mob scene.
 	var mob = MobScene.instantiate()
