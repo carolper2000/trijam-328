@@ -40,6 +40,7 @@ curve = SubResource("Curve3D_nhkr4")
 transform = Transform3D(-0.00804873, 0, -0.999968, 0, 1, 0, 0.999968, 0, -0.00804873, -5.99301, 0, -6.07221)
 
 [node name="Cylinders" type="Node3D" parent="."]
+visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Cylinders"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -6)
