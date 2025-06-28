@@ -27,6 +27,14 @@ func _input(event):
 		rotate_y(-deg_to_rad(event.relative.x * MOUSE_SENS))
 		Head.rotate_x(-deg_to_rad(event.relative.y * MOUSE_SENS))
 		Head.rotation.x = clamp(Head.rotation.x, deg_to_rad(-89), deg_to_rad(89))
+	
+	if Input.is_action_just_pressed("mouse_capture_toogle"):
+		if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
+			print("set CAPTURED")
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		elif Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+			print("set VISIBLE")
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
