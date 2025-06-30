@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://bpscpe4a2dbj6"]
+
+[ext_resource type="PackedScene" uid="uid://c0asb8lw7lyjp" path="res://Assets/element.tscn" id="1_pe0gm"]
+[ext_resource type="PackedScene" uid="uid://bcagi54st26us" path="res://Assets/stairs_triangle.tscn" id="3_cll7d"]
+[ext_resource type="PackedScene" uid="uid://xcdql1ysxqny" path="res://Assets/stairs_straight.tscn" id="3_qvdtc"]
+
+[node name="Floor" type="Node3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="Object8" parent="." instance=ExtResource("1_pe0gm")]
+transform = Transform3D(4.94975, 0, 17.8898, 0, 0.4, 0, -4.94975, 0, 17.8898, -6.4, 4, -4.6)
+
+[node name="poles" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.1322, -0.0552478, -0.0116806)
+
+[node name="Object8" parent="poles" instance=ExtResource("1_pe0gm")]
+transform = Transform3D(0.707017, -0.0493636, 0.707089, 0.0104715, 3.99968, 0.00698126, -0.70712, 0.00987377, 0.707089, -16.8564, 0.0355219, -4.92229)
+
+[node name="Object9" parent="poles" instance=ExtResource("1_pe0gm")]
+transform = Transform3D(0.707017, -0.0493636, 0.707089, 0.0104715, 3.99968, 0.00698126, -0.70712, 0.00987377, 0.707089, -2.71459, 0.175147, 9.21949)
+
+[node name="Object10" parent="poles" instance=ExtResource("1_pe0gm")]
+transform = Transform3D(0.707017, -0.0493636, 0.707089, 0.0104715, 3.99968, 0.00698126, -0.70712, 0.00987377, 0.707089, -9.78549, 0.105335, 2.1486)
+
+[node name="stairs_3d" parent="." instance=ExtResource("3_qvdtc")]
+transform = Transform3D(1.41283, 0, -3.25831, 0, 2.15689, 0, 1.41283, 0, 3.25831, -6.36467, 0, -4.60589)
+
+[node name="stairs_triangle" parent="." instance=ExtResource("3_cll7d")]
+transform = Transform3D(-3.3234, 0, -2.26274, 0, 2, 0, 3.3234, 0, -2.26274, -6, 0, -4.34315)

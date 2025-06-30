@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://bmf50b77srvkg"]
+
+[ext_resource type="PackedScene" uid="uid://c0asb8lw7lyjp" path="res://Assets/element.tscn" id="1_py0sm"]
+[ext_resource type="PackedScene" uid="uid://bcagi54st26us" path="res://Assets/stairs_triangle.tscn" id="3_paxgg"]
+[ext_resource type="PackedScene" uid="uid://xcdql1ysxqny" path="res://Assets/stairs_straight.tscn" id="3_py0sm"]
+
+[node name="Floor" type="Node3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="Object8" parent="." instance=ExtResource("1_py0sm")]
+transform = Transform3D(4.49951, 0, 19.3809, 0, 0.4, 0, -5.36231, 0, 16.2625, -6.4, 4, -4.6)
+
+[node name="Object9" parent="." instance=ExtResource("1_py0sm")]
+transform = Transform3D(7, 0, 0, 0, 0.4, 0, 0, 0, 16.2, -6.4, 4, -4.6)
+
+[node name="Object10" parent="." instance=ExtResource("1_py0sm")]
+transform = Transform3D(-3.0598e-07, 0, 12.285, 0, 0.4, 0, -7, 0, -5.36994e-07, 0.440399, 4, 11.6237)
+
+[node name="poles" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.1322, -0.0552478, -0.0116806)
+
+[node name="Object8" parent="poles" instance=ExtResource("1_py0sm")]
+transform = Transform3D(0.766048, -0.0169367, -0.64277, 0.0109082, 3.99968, 0.00641346, 0.642692, -0.047698, 0.766032, -16.713, 0.0740027, -6.3261)
+
+[node name="Object9" parent="poles" instance=ExtResource("1_py0sm")]
+transform = Transform3D(0.766048, -0.0169367, -0.64277, 0.0109082, 3.99968, 0.00641346, 0.642692, -0.047698, 0.766032, -2.15813, 0.281259, 5.88505)
+
+[node name="Object10" parent="poles" instance=ExtResource("1_py0sm")]
+transform = Transform3D(0.766048, -0.0169367, -0.64277, 0.0109082, 3.99968, 0.00641346, 0.642692, -0.047698, 0.766032, -9.8186, 0.172177, -0.541871)
+
+[node name="stairs_triangle" parent="." instance=ExtResource("3_paxgg")]
+transform = Transform3D(-1.63113e-07, 0, -3.78944, 0, 2.3, 0, 3.73159, 0, -1.65642e-07, -5.94639, 0, 11.2819)
+
+[node name="stairs_3d" parent="." instance=ExtResource("3_py0sm")]
+transform = Transform3D(-3.57582e-07, 0, -3.6, 0, 2.205, 0, 8.18052, 0, -1.57361e-07, -6.28, 0, -4.798)
+
+[node name="stairs_3d2" parent="." instance=ExtResource("3_py0sm")]
+transform = Transform3D(9.56869, 0, -2.38419e-07, 0, 2.205, 0, 5.57753e-07, 0, 3.6, -6.28, 0, 11.5356)

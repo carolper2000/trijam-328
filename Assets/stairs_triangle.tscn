@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://bcagi54st26us"]
+
+[ext_resource type="PackedScene" uid="uid://i2nfqskoewmm" path="res://Assets/stairs_triangle.glb" id="1_4kw2y"]
+
+[node name="stairs_triangle" instance=ExtResource("1_4kw2y")]

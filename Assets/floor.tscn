@@ -2,24 +2,37 @@
 
 [ext_resource type="PackedScene" uid="uid://c0asb8lw7lyjp" path="res://Assets/element.tscn" id="1_dc5ec"]
 [ext_resource type="PackedScene" uid="uid://bw30iyv12ab86" path="res://Assets/stairs_angle.glb" id="2_si5bl"]
-[ext_resource type="PackedScene" uid="uid://xcdql1ysxqny" path="res://Assets/stairs_straight.tscn" id="3_f6367"]
+[ext_resource type="PackedScene" uid="uid://bcagi54st26us" path="res://Assets/stairs_triangle.tscn" id="3_f6367"]
 
 [node name="Floor" type="Node3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="Object8" parent="." instance=ExtResource("1_dc5ec")]
-transform = Transform3D(4.49951, 0, 19.3809, 0, 0.4, 0, -5.36231, 0, 16.2625, 13.6, 4, 11.4)
-metadata/_custom_type_script = "uid://l6unb7fmhord"
+transform = Transform3D(4.49951, 0, 19.3809, 0, 0.4, 0, -5.36231, 0, 16.2625, -6.4, 4, -4.6)
 
 [node name="Object9" parent="." instance=ExtResource("1_dc5ec")]
-transform = Transform3D(7, 0, 0, 0, 0.4, 0, 0, 0, 9, 13.6, 4, 11.4)
-metadata/_custom_type_script = "uid://l6unb7fmhord"
+transform = Transform3D(7, 0, 0, 0, 0.4, 0, 0, 0, 9, -6.4, 4, -4.6)
 
 [node name="Object10" parent="." instance=ExtResource("1_dc5ec")]
-transform = Transform3D(-3.0598e-07, 0, 12.285, 0, 0.4, 0, -7, 0, -5.36994e-07, 20.617, 4, 27.6)
+transform = Transform3D(-3.0598e-07, 0, 12.285, 0, 0.4, 0, -7, 0, -5.36994e-07, 0.440399, 4, 11.6237)
 
 [node name="stairs_2sides" parent="." instance=ExtResource("2_si5bl")]
-transform = Transform3D(-1.58345e-07, 0, -3.456, 0, 2.205, 0, 3.6225, 0, -1.51067e-07, 20.6, 0, 20.4)
+transform = Transform3D(-1.58345e-07, 0, -3.456, 0, 2.205, 0, 3.6225, 0, -1.51067e-07, 0.6, 0, 4.4)
 
-[node name="stairs_3d" parent="." instance=ExtResource("3_f6367")]
-transform = Transform3D(9.65216, 0, -3.27822, 0, 2.19, 0, 8.09912, 0, 3.90683, 13.6402, 0, 11.3642)
-visible = false
+[node name="poles" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.1322, -0.0552478, -0.0116806)
+
+[node name="Object8" parent="poles" instance=ExtResource("1_dc5ec")]
+transform = Transform3D(0.766048, -0.0169367, -0.64277, 0.0109082, 3.99968, 0.00641346, 0.642692, -0.047698, 0.766032, -16.713, 0.0740027, -6.3261)
+
+[node name="Object9" parent="poles" instance=ExtResource("1_dc5ec")]
+transform = Transform3D(0.766048, -0.0169367, -0.64277, 0.0109082, 3.99968, 0.00641346, 0.642692, -0.047698, 0.766032, -2.15813, 0.281259, 5.88505)
+
+[node name="Object10" parent="poles" instance=ExtResource("1_dc5ec")]
+transform = Transform3D(0.766048, -0.0169367, -0.64277, 0.0109082, 3.99968, 0.00641346, 0.642692, -0.047698, 0.766032, -9.8186, 0.172177, -0.541871)
+
+[node name="stairs_triangle" parent="." instance=ExtResource("3_f6367")]
+transform = Transform3D(-1.66103e-07, 0, -2, 0, 2.3, 0, 3.8, 0, -8.74228e-08, -6, 0, 4)
+
+[node name="stairs_triangle2" parent="." instance=ExtResource("3_f6367")]
+transform = Transform3D(-8.30516e-08, 0, -3.2, 0, 2.28, 0, 1.9, 0, -1.39876e-07, 0.2, 0, 11.4)
