@@ -160,6 +160,7 @@ transform = Transform3D(0.799939, -0.0108125, 0.00590947, 0.00866079, 0.999939, 
 transform = Transform3D(6.00349e-05, 0.00513042, -0.799984, 0.00872659, 0.799936, 0.00513077, 0.799953, -0.00872679, 4.06499e-06, 13.4239, -0.0931997, 10.2636)
 
 [node name="Collisions" type="Node3D" parent="."]
+visible = false
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Collisions"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, 16.5)
