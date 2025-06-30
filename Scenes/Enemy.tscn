@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://b1jer5vh22h5t" path="res://Scripts/enemy.gd" id="1_wovta"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wovta"]
-size = Vector3(0.6, 1, 0.6)
+size = Vector3(0.2, 0.8, 0.1)
 
 [node name="Enemy" type="CharacterBody3D"]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
@@ -13,12 +13,13 @@ min_speed = 5
 max_speed = 10
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0.75, 0)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -9.93411e-09, 0.75, -0.00833335)
 shape = SubResource("BoxShape3D_wovta")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0.75, 0)
 billboard = 2
+texture_filter = 0
 texture = ExtResource("1_m1htj")
 
 [node name="VisibilityNotifier" type="VisibleOnScreenNotifier3D" parent="."]

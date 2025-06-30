@@ -1,14 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://756k51vxitej"]
+[gd_scene load_steps=9 format=3 uid="uid://756k51vxitej"]
 
 [ext_resource type="Texture2D" uid="uid://bsnq8pgafkqrq" path="res://Assets/level_0_source.png" id="3_vyv7u"]
 [ext_resource type="PackedScene" uid="uid://cvopngxdg55tx" path="res://Assets/stairs_straight.glb" id="4_8kb5a"]
 [ext_resource type="PackedScene" uid="uid://bmf50b77srvkg" path="res://Assets/floor_pente.tscn" id="4_qumfl"]
 [ext_resource type="PackedScene" uid="uid://c0asb8lw7lyjp" path="res://Assets/element.tscn" id="4_vyv7u"]
-
-[sub_resource type="Environment" id="Environment_xb4mg"]
-ambient_light_source = 2
-ambient_light_color = Color(1, 1, 1, 1)
-ambient_light_energy = 0.4
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4dudg"]
 albedo_texture = ExtResource("3_vyv7u")
@@ -26,7 +21,6 @@ albedo_color = Color(0, 1, 1, 1)
 [node name="Layout" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_xb4mg")
 
 [node name="Geometry" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
@@ -49,7 +43,7 @@ transform = Transform3D(31.8962, 0, 0, 0, 0.198, 0, 0, 0, 33.575, 6, 0, 1)
 metadata/_custom_type_script = "uid://l6unb7fmhord"
 
 [node name="MeshInstance3D" parent="Geometry/ground/Object" index="0"]
-transform = Transform3D(1.31134e-07, 0, -1.1, 0, 1, 0, 1, 0, 1.44248e-07, 0.336067, 0.5, 0.450947)
+transform = Transform3D(1.68222e-07, 0, -1.29715, 0, 1, 0, 1.28282, 0, 1.70101e-07, 0.336067, 0.5, 0.450947)
 material_override = SubResource("StandardMaterial3D_osyy1")
 
 [node name="Object6" parent="Geometry/ground" instance=ExtResource("4_vyv7u")]
@@ -58,18 +52,6 @@ transform = Transform3D(-1.18021e-06, 0, 27, 0, 0.186, 0, -27, 0, -1.18021e-06, 
 [node name="MeshInstance3D" parent="Geometry/ground/Object6" index="0"]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -0.0997198, 0.5, 0.370621)
 material_override = SubResource("StandardMaterial3D_vyv7u")
-
-[node name="Object2" parent="Geometry/ground" instance=ExtResource("4_vyv7u")]
-transform = Transform3D(4.24264, 0, -4.24264, 0, 0.086, 0, 4.24264, 0, 4.24264, 25.4068, 0, -4.00757)
-
-[node name="Object3" parent="Geometry/ground" instance=ExtResource("4_vyv7u")]
-transform = Transform3D(4.24264, 0, -4.24264, 0, 0.086, 0, 4.24264, 0, 4.24264, 11.4068, 0, -4.10757)
-
-[node name="Object4" parent="Geometry/ground" instance=ExtResource("4_vyv7u")]
-transform = Transform3D(4.24264, 0, -4.24264, 0, 0.086, 0, 4.24264, 0, 4.24264, 0.906757, 0, 5.29244)
-
-[node name="Object5" parent="Geometry/ground" instance=ExtResource("4_vyv7u")]
-transform = Transform3D(4.24264, 0, -4.24264, 0, 0.086, 0, 4.24264, 0, 4.24264, 0.906757, 0, 18.5924)
 
 [node name="block" type="Node3D" parent="Geometry"]
 
@@ -273,13 +255,13 @@ size = Vector3(4.7, 0.001, 18.4)
 material = SubResource("StandardMaterial3D_qumfl")
 
 [node name="CSGBox3D11" type="CSGBox3D" parent="Collisions/Node3D"]
-transform = Transform3D(0.804896, 0.591314, 0.0498999, 0.590956, -0.806369, 0.0232341, 0.0539763, 0.0107876, -0.998484, 6.83713, 1.80146, 16.9809)
+transform = Transform3D(0.806227, 0.591189, 0.022193, 0.591412, -0.806356, -0.00469741, 0.0151183, 0.0169124, -0.999743, 6.91618, 1.8995, 17.3376)
 use_collision = true
-size = Vector3(5.07722, 0.001, 15.2522)
+size = Vector3(5.07722, 0.001, 14.5417)
 material = SubResource("StandardMaterial3D_qumfl")
 
 [node name="CSGBox3D12" type="CSGBox3D" parent="Collisions/Node3D"]
-transform = Transform3D(0.0192886, 0.0443873, 0.998828, 0.599347, -0.80013, 0.0239831, 0.800257, 0.598183, -0.0420367, 13.9031, 1.63689, 6.57828)
+transform = Transform3D(0.0192886, 0.0443873, 0.998828, 0.599347, -0.80013, 0.0239831, 0.800257, 0.598183, -0.0420367, 13.9031, 1.63689, 6.68787)
 use_collision = true
 size = Vector3(6.28828, 0.001, 9.39419)
 material = SubResource("StandardMaterial3D_qumfl")
@@ -287,14 +269,14 @@ material = SubResource("StandardMaterial3D_qumfl")
 [node name="CSGBox3D13" type="CSGPolygon3D" parent="Collisions/Node3D"]
 transform = Transform3D(-0.383609, 0.714011, 0.58569, -0.671965, 0.219239, -0.707388, -0.633489, -0.664924, 0.395688, 5.33671, 0.930668, 10.8803)
 use_collision = true
-polygon = PackedVector2Array(32.8083, -45.2284, 0, 1, -2.68236, 4.43503, 2.60169, 6.61417)
+polygon = PackedVector2Array(32.8083, -45.2284, 0, 1, -2.0765, 4.28279, 2.60169, 6.61417)
 depth = 0.05
 material = SubResource("StandardMaterial3D_qumfl")
 
 [node name="CSGBox3D14" type="CSGPolygon3D" parent="Collisions/Node3D"]
 transform = Transform3D(-0.349629, 0.936785, 0.0139268, 0.00153792, 0.0154387, -0.99988, -0.936887, -0.349566, -0.00683832, 4.49627, 3.22308, 9.35437)
 use_collision = true
-polygon = PackedVector2Array(-1.27627, 4.42142, -4.93335, 14.0559, -15.5311, -1.41905)
+polygon = PackedVector2Array(-1.6549, 4.42145, -4.93335, 14.0559, -15.5311, -1.41905)
 depth = 0.09
 material = SubResource("StandardMaterial3D_qumfl")
 
