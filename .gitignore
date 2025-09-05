@@ -2,3 +2,6 @@
 .godot/
 /android/
 /Build/
+
+# ignore tmp scenes
+*.tmp

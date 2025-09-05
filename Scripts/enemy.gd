@@ -11,6 +11,15 @@ extends CharacterBody3D
 var timer : float = 0.0
 var is_moving : bool = true
 
+var groups = ["enemies"]
+
+func _ready() -> void:
+	# set group
+	for group in groups:
+		add_to_group(group)
+
+@onready var player
+
 func _physics_process(_delta):
 	# Add the gravity.
 	if not is_on_floor():
@@ -32,21 +41,28 @@ func _physics_process(_delta):
 			timer = 0.0
 			is_moving = true
 			# Nouvelle direction vers le joueur
-			look_at(player_position, Vector3.UP)
 			rotate_y(randf_range(-PI / 4, PI / 4))
 			var random_speed = randi_range(min_speed, max_speed)
 			velocity = Vector3.FORWARD * random_speed
 			velocity = velocity.rotated(Vector3.UP, rotation.y)
 
-var player_position
+	# rotate y to player position
+	# Calculer la position cible en gardant la même hauteur que le CollisionShape3D
+	var target = player.global_position
+	target.y = $CollisionShape3D.global_position.y
+
+	# Appliquer le look_at mais uniquement pour Y
+	var current_pos = $CollisionShape3D.global_position
+	$CollisionShape3D.look_at(target, Vector3.UP)
+	$CollisionShape3D.global_position = current_pos  # remettre la position initiale
 
 # This function will be called from the Main scene.
-func initialize(start_position, player_position_param):
-	player_position = player_position_param
+func initialize(start_position, player_instance):
+	player = player_instance
 
 	# We position the mob by placing it at start_position
-	# and rotate it towards player_position, so it looks at the player.
-	look_at_from_position(start_position, player_position, Vector3.UP)
+	# and rotate it towards player.position, so it looks at the player.
+	look_at_from_position(start_position, player.position, Vector3.UP)
 	# Rotate this mob randomly within range of -30 to 30 degrees
 	# so that it doesn't move directly towards the player.
 	rotate_y(randf_range(-deg_to_rad(30), deg_to_rad(30)))

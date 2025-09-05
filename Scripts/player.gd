@@ -7,7 +7,7 @@ const JUMP_VELOCITY = 4.5
 
 const MOUSE_SENS = 0.4
 
-var bullet = load("res://Scenes/BloodBullet.tscn")
+var bullet_scene = load("res://Scenes/BloodBullet.tscn")
 @onready var Pos = $Head/BulletSpawn
 
 @onready var BloodMeterBar = $PlayerGUI/BloodMeter/ProgressBar
@@ -15,6 +15,12 @@ var bullet = load("res://Scenes/BloodBullet.tscn")
 @onready var KillAmount = $PlayerGUI/KillAmount
 
 @onready var BloodBulletShot = $BloodBulletShot
+
+# == SIGNALS ==
+
+signal bullet_spawned(bullet)
+
+# == GODOT FUNCTIONS ==
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -28,16 +34,16 @@ func _input(event):
 	
 	if Input.is_action_just_pressed("mouse_capture_toogle"):
 		if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
-			print("set CAPTURED")
+			print("MOUSE : CAPTURED")
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		elif Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-			print("set VISIBLE")
+			print("MOUSE : RELEASE")
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
-		print(get_gravity())
+		# print(get_gravity())
 		velocity += get_gravity() * delta
 
 	# Handle jump.
@@ -57,14 +63,18 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-	# Shoot bullet
+	# Shoot bullet_scene
 	if Input.is_action_just_pressed("click"):
 		if Global.blood == 0:
 			return
-		var instance = bullet.instantiate()
-		instance.position = Pos.global_position
-		instance.transform.basis = Pos.global_transform.basis
-		get_parent().add_child(instance)
+		var bullet_instance = bullet_scene.instantiate()
+		bullet_instance.state = bullet_instance.STATE.SHOT
+		bullet_instance.position = Pos.global_position
+		bullet_instance.transform.basis = Pos.global_transform.basis
+
+		var parent = get_parent()
+		parent.add_child(bullet_instance)
+		emit_signal("bullet_spawned", bullet_instance)
 		BloodBulletShot.play()
 		Global.blood -= 1
 		if Global.blood == 0:
@@ -74,7 +84,8 @@ func _physics_process(delta: float) -> void:
 	# Update the kill count GUI
 	if KillAmount.text != str(Global.kills):
 		KillAmount.text = str(Global.kills)
-	
+
+# == METHODS ==
 
 func updateBloodMeterGUI():
 	var bloodPercent = float(Global.blood) / float(Global.MAX_BLOOD)

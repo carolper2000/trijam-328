@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://b1jer5vh22h5t" path="res://Scripts/enemy.gd" id="1_wovta"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wovta"]
-size = Vector3(0.343256, 0.8875, 0.1)
+size = Vector3(0.553955, 0.8875, 0.1)
 
 [node name="Enemy" type="CharacterBody3D"]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
@@ -12,7 +12,7 @@ floor_max_angle = 1.39626
 script = ExtResource("1_wovta")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0.0354354, 0.744727, -0.00833335)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0.00668784, 0.744727, -0.00833335)
 shape = SubResource("BoxShape3D_wovta")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]

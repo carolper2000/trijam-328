@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://cifso8sdesemi"]
+[gd_scene load_steps=13 format=3 uid="uid://cifso8sdesemi"]
 
 [ext_resource type="PackedScene" uid="uid://cvyrnq2fycdqt" path="res://Scenes/Player.tscn" id="1_hpc76"]
 [ext_resource type="Script" uid="uid://bbjnc1rjhflal" path="res://Scripts/game_manager.gd" id="1_nhkr4"]
 [ext_resource type="PackedScene" uid="uid://dkn3skib5f4qp" path="res://Scenes/Enemy.tscn" id="2_7rqgy"]
 [ext_resource type="AudioStream" uid="uid://ftqoiqx7wi48" path="res://Audio/main-theme.mp3" id="2_tr2i4"]
+[ext_resource type="Script" uid="uid://hdobpdpmx1kq" path="res://Scripts/combat_manager.gd" id="3_y4jh7"]
 [ext_resource type="PackedScene" uid="uid://756k51vxitej" path="res://Scenes/Map.tscn" id="5_qxria"]
 
 [sub_resource type="Curve3D" id="Curve3D_nhkr4"]
@@ -78,14 +79,20 @@ mesh = SubResource("CylinderMesh_7rqgy")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 6)
 mesh = SubResource("CylinderMesh_7rqgy")
 
-[node name="GameManager" type="Node" parent="."]
+[node name="Managers" type="Node" parent="."]
+
+[node name="GameManager" type="Node" parent="Managers"]
 script = ExtResource("1_nhkr4")
 MobScene = ExtResource("2_7rqgy")
 
-[node name="MobTimer" type="Timer" parent="GameManager"]
+[node name="MobTimer" type="Timer" parent="Managers/GameManager"]
 autostart = true
 
+[node name="CombatManager" type="Node" parent="Managers"]
+script = ExtResource("3_y4jh7")
+
 [node name="Player" parent="." instance=ExtResource("1_hpc76")]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9, 0)
 
 [node name="Layout" parent="." instance=ExtResource("5_qxria")]
@@ -151,4 +158,4 @@ offset_bottom = -119.0
 grow_horizontal = 2
 text = "Retry"
 
-[connection signal="timeout" from="GameManager/MobTimer" to="GameManager" method="_on_mob_timer_timeout"]
+[connection signal="timeout" from="Managers/GameManager/MobTimer" to="Managers/GameManager" method="_on_mob_timer_timeout"]

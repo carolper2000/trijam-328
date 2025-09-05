@@ -2,7 +2,7 @@ extends Node
 
 @export var MobScene: PackedScene
 
-@onready var Player = $"../Player"
+@onready var Player = $"../../Player"
 @onready var MobTimer = $"MobTimer"
 
 @export var initial_spawn_interval = 3.0
@@ -41,18 +41,15 @@ func _on_mob_timer_timeout():
 	# Choose a random SpawnPoint
 	var spawn_point_index = randi_range(1, 4)
 	# Choose a random spawn point from the 4 available
-	var mob_spawn_location = get_node("../SpawnsMob/SpawnLocation" + str(spawn_point_index))
+	var mob_spawn_location = get_node("../../SpawnsMob/SpawnLocation" + str(spawn_point_index))
 
 	# We store the reference to the SpawnLocation node.
 	# var mob_spawn_location = get_node("../SpawnPath/SpawnLocation")
 	# And give it a random offset.
 	# mob_spawn_location.progress_ratio = randf()
 
-
-	var player_position = Player.position
-
 	# Initialize the mob's position and rotation.
-	mob.initialize(mob_spawn_location.position, player_position)
+	mob.initialize(mob_spawn_location.position, Player)
 
 	# Spawn the mob by adding it to the Main scene.
 	add_child(mob)
