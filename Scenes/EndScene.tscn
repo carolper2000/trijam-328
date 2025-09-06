@@ -1,0 +1,70 @@
+[gd_scene load_steps=4 format=3 uid="uid://dampoxvndmw5c"]
+
+[ext_resource type="Script" uid="uid://bg3tnxxv15r86" path="res://Scripts/end_scene.gd" id="1_fxskr"]
+[ext_resource type="FontFile" uid="uid://dip5eyt0igeqh" path="res://Fonts/Jersey15-Regular.ttf" id="2_ckv4c"]
+
+[sub_resource type="FontVariation" id="FontVariation_67ibq"]
+base_font = ExtResource("2_ckv4c")
+
+[node name="End" type="Node2D"]
+script = ExtResource("1_fxskr")
+
+[node name="GUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 1.0
+offset_right = 322.0
+offset_bottom = 240.0
+
+[node name="ColorRect" type="ColorRect" parent="GUI"]
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 238.0
+
+[node name="KillAmount" type="RichTextLabel" parent="GUI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -76.5
+offset_right = 41.0
+offset_bottom = -25.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.58675, 1.58675)
+theme_override_colors/default_color = Color(1, 0, 0, 1)
+theme_override_fonts/normal_font = SubResource("FontVariation_67ibq")
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "0 kills"
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Retry" type="RichTextLabel" parent="GUI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -161.0
+offset_top = 23.5
+offset_right = 41.0
+offset_bottom = 74.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.58675, 1.58675)
+theme_override_colors/default_color = Color(1, 0, 0, 1)
+theme_override_fonts/normal_font = SubResource("FontVariation_67ibq")
+theme_override_font_sizes/normal_font_size = 25
+bbcode_enabled = true
+text = "[R] Retry"
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1

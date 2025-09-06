@@ -8,14 +8,14 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qbkls"]
 
-[sub_resource type="FontVariation" id="FontVariation_nn08x"]
-base_font = ExtResource("5_5ixxa")
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ixxa"]
 bg_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dewec"]
 bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="FontVariation" id="FontVariation_nn08x"]
+base_font = ExtResource("5_5ixxa")
 
 [node name="Player" type="CharacterBody3D"]
 floor_stop_on_slope = false
@@ -40,30 +40,13 @@ transform = Transform3D(0.999391, -0.0018265, 0.0348517, 0, 0.99863, 0.052336, -
 
 [node name="PlayerGUI" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
-
-[node name="Sprite2D" type="Sprite2D" parent="PlayerGUI"]
-texture = ExtResource("2_kyqiw")
-centered = false
-
-[node name="KillAmount" type="RichTextLabel" parent="PlayerGUI"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_right = 24.0
-offset_bottom = 18.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -320.0
+offset_bottom = -240.0
 grow_horizontal = 2
-scale = Vector2(1.58675, 1.58675)
-theme_override_colors/default_color = Color(1, 0, 0, 1)
-theme_override_fonts/normal_font = SubResource("FontVariation_nn08x")
-theme_override_font_sizes/normal_font_size = 12
-bbcode_enabled = true
-text = "50"
-scroll_active = false
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
+grow_vertical = 2
 
 [node name="BloodMeter" type="Control" parent="PlayerGUI"]
 anchors_preset = 0
@@ -108,3 +91,53 @@ scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerGUI"]
+texture = ExtResource("2_kyqiw")
+centered = false
+
+[node name="KillAmount" type="RichTextLabel" parent="PlayerGUI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_right = 24.0
+offset_bottom = 18.0
+grow_horizontal = 2
+scale = Vector2(1.58675, 1.58675)
+theme_override_colors/default_color = Color(1, 0, 0, 1)
+theme_override_fonts/normal_font = SubResource("FontVariation_nn08x")
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "50"
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Viseur" type="Control" parent="PlayerGUI"]
+anchors_preset = 0
+offset_right = 321.0
+offset_bottom = 240.0
+
+[node name="ColorRect" type="ColorRect" parent="PlayerGUI/Viseur"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1.5
+offset_top = 8.0
+offset_right = 0.699997
+offset_bottom = 10.2
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.785398
+color = Color(1, 0, 0, 1)
+
+[node name="AnimationRect" type="ColorRect" parent="PlayerGUI"]
+visible = false
+layout_mode = 0
+offset_right = 319.0
+offset_bottom = 241.0

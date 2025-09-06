@@ -5,8 +5,8 @@ extends Node
 @onready var Player = $"../../Player"
 @onready var MobTimer = $"MobTimer"
 
-@export var initial_spawn_interval = 3.0
-@export var spawn_interval_decrease = 0.2
+@export var initial_spawn_interval = 2.5
+@export var spawn_interval_decrease = 0.3
 
 var previous_kills_checkpoint = 0
 
@@ -30,13 +30,11 @@ func _process(_delta):
 		previous_kills_checkpoint = kills_checkpoint
 		pause_and_speed_up()
 
-func _input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed("restart"):
-		get_tree().reload_current_scene()
-
 func _on_mob_timer_timeout():
 	# Create a new instance of the Mob scene.
 	var mob = MobScene.instantiate()
+
+	mob.connect("hit_player", Callable(self, "_on_hit_player"))
 
 	# Choose a random SpawnPoint
 	var spawn_point_index = randi_range(1, 4)
@@ -53,3 +51,13 @@ func _on_mob_timer_timeout():
 
 	# Spawn the mob by adding it to the Main scene.
 	add_child(mob)
+
+func _on_hit_player(enemy: Node3D):
+	# Player hit, game over
+	print("[GameMgr] Player hit by enemy: %s" % enemy.name)
+	enemy.queue_free()
+	Global.blood -= 1
+	if Global.blood <= 0:
+		Player.gameOver()
+	Player.updateBloodMeterGUI()
+	Player.blink_blood_meter(Color(1,0,0, 0.8), 0.05, 5)

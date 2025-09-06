@@ -1,12 +1,17 @@
 extends CharacterBody3D
 
 # Minimum speed of the mob in meters per second.
-@export var min_speed = 4
+@export var min_speed = 8
 # Maximum speed of the mob in meters per second.
-@export var max_speed = 8
+@export var max_speed = 12
 
 @export var move_time = 3.0  # Temps de déplacement en secondes
 @export var pause_time = 2.0  # Temps de pause en secondes
+
+# SIGNALS
+signal hit_player(enemy: Node3D)
+
+var random_rotating_range = PI / 8
 
 var timer : float = 0.0
 var is_moving : bool = true
@@ -20,7 +25,19 @@ func _ready() -> void:
 
 @onready var player
 
+var last_collider
+
 func _physics_process(_delta):
+
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		# check only first collide
+		if collision.get_collider() != last_collider:
+			last_collider = collision.get_collider()
+			if collision.get_collider().name == "Player":
+				print("[Enemy] Hit Player!")
+				emit_signal("hit_player", self)
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * _delta
@@ -41,7 +58,8 @@ func _physics_process(_delta):
 			timer = 0.0
 			is_moving = true
 			# Nouvelle direction vers le joueur
-			rotate_y(randf_range(-PI / 4, PI / 4))
+			look_at(player.global_position, Vector3.UP)
+			rotate_y(randf_range(-random_rotating_range, random_rotating_range))
 			var random_speed = randi_range(min_speed, max_speed)
 			velocity = Vector3.FORWARD * random_speed
 			velocity = velocity.rotated(Vector3.UP, rotation.y)

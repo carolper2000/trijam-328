@@ -1,12 +1,14 @@
 extends Area3D
 
-var speed=50
+var speed=220
+var last_position: Vector3
+var initial_position: Vector3
+
+@export var state: STATE = STATE.DEFAULT
+var previous_collider:Object = null
 
 signal raycasted_with(bullet: Area3D, target: Node3D)
-var last_position: Vector3
-var state: STATE = STATE.DEFAULT
-var initial_position = Vector3.ZERO
-var previous_collider:Object = null
+signal collided_with(bullet: Area3D, target: Node3D)
 
 enum STATE
 {
@@ -19,16 +21,19 @@ func _ready():
 	last_position = global_position
 	initial_position = global_position
 
+	# on body entered
+	connect("body_entered", Callable(self, "_on_body_entered"))
+
 func _process(delta):
-	var new_position = Vector3.ZERO
+	var new_position = global_position
 	
 	# == STATES ==
 	if state == STATE.SHOT:
 		new_position = global_position + transform.basis.z * -speed * delta
 
-	if state == STATE.FLOATING: #(cycle between y=20 et y=200 en 2 secondes)
+	if state == STATE.FLOATING:
 		new_position = global_position
-		new_position.y = initial_position.y + 1.3 + sin(Time.get_ticks_msec() / 2000.0 * PI)
+		new_position.y = initial_position.y + 1.0 + 0.5 * sin(Time.get_ticks_msec() / 2000.0 * PI)
 
 	# == RAYCAST + COLLIDER ==
 	# Calculer le déplacement total pour ce frame
@@ -50,3 +55,8 @@ func _process(delta):
 
 	# == UPDATE STATE VARIABLES ==
 	last_position = new_position
+
+# on body entered
+func _on_body_entered(body: Node3D) -> void:
+	print("[BldBlt] Collided with %s" % body.name)
+	emit_signal("collided_with", self, body)

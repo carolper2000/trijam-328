@@ -8,11 +8,14 @@ const JUMP_VELOCITY = 4.5
 const MOUSE_SENS = 0.4
 
 var bullet_scene = load("res://Scenes/BloodBullet.tscn")
+@onready var end_scene = "res://Scenes/EndScene.tscn"
+
 @onready var Pos = $Head/BulletSpawn
 
 @onready var BloodMeterBar = $PlayerGUI/BloodMeter/ProgressBar
 @onready var BloodMeterAmount = $PlayerGUI/BloodMeter/BloodAmount
 @onready var KillAmount = $PlayerGUI/KillAmount
+@onready var AnimationRect = $PlayerGUI/AnimationRect
 
 @onready var BloodBulletShot = $BloodBulletShot
 
@@ -77,7 +80,7 @@ func _physics_process(delta: float) -> void:
 		emit_signal("bullet_spawned", bullet_instance)
 		BloodBulletShot.play()
 		Global.blood -= 1
-		if Global.blood == 0:
+		if Global.blood <= 0:
 			gameOver()
 		updateBloodMeterGUI()
 	
@@ -94,4 +97,41 @@ func updateBloodMeterGUI():
 
 func gameOver():
 	print_debug("gameover")
-	# TODO
+	get_tree().change_scene_to_file(end_scene)
+
+func blink_animation(
+	color: Color = Color(1,1,1),
+	time: float = 0.1,
+	count: int = 1):
+
+	print("[Player] Blink player animation")
+	AnimationRect.modulate = color
+
+	# set visible
+	for i in range(count):
+		AnimationRect.visible = true
+		await get_tree().create_timer(time).timeout
+		AnimationRect.visible = false
+		await get_tree().create_timer(time).timeout
+	
+	AnimationRect.visible = false
+
+func blink_blood_meter(
+	color: Color = Color(1,1,1),
+	time: float = 0.1,
+	count: int = 1):
+
+	# Récupérer le style background correctement
+	var style_box = BloodMeterBar.get_theme_stylebox("fill")
+	if not style_box:
+		print("[Player] Erreur: Pas de style background trouvé")
+		return
+		
+	var initial_color = style_box.bg_color
+
+	print("[Player] Blink blood meter")
+	for i in range(count):
+		style_box.bg_color = color
+		await get_tree().create_timer(time).timeout
+		style_box.bg_color = initial_color
+		await get_tree().create_timer(time).timeout

@@ -8,7 +8,7 @@
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="Object8" parent="." instance=ExtResource("1_py0sm")]
-transform = Transform3D(4.49951, 0, 19.3809, 0, 0.4, 0, -5.36231, 0, 16.2625, -6.4, 4, -4.6)
+transform = Transform3D(2.94718, 0, 19.2584, 0, 0.4, 0, -3.51231, 0, 16.1597, -6.4, 4, -4.6)
 
 [node name="Object9" parent="." instance=ExtResource("1_py0sm")]
 transform = Transform3D(7, 0, 0, 0, 0.4, 0, 0, 0, 16.2, -6.4, 4, -4.6)
