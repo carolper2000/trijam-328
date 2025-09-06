@@ -133,6 +133,8 @@ func blink_blood_meter(
 	print("[Player] Blink blood meter")
 	for i in range(count):
 		style_box.bg_color = color
-		await get_tree().create_timer(time).timeout
-		style_box.bg_color = initial_color
-		await get_tree().create_timer(time).timeout
+		# if get_tree not = null
+		if get_tree():	
+			await get_tree().create_timer(time).timeout
+			style_box.bg_color = initial_color
+			await get_tree().create_timer(time).timeout

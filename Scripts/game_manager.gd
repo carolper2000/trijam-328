@@ -6,7 +6,7 @@ extends Node
 @onready var MobTimer = $"MobTimer"
 
 @export var initial_spawn_interval = 2.5
-@export var spawn_interval_decrease = 0.3
+@export var spawn_interval_decrease = 0.4
 
 var previous_kills_checkpoint = 0
 
@@ -37,8 +37,9 @@ func _on_mob_timer_timeout():
 	mob.connect("hit_player", Callable(self, "_on_hit_player"))
 
 	# Choose a random SpawnPoint
-	var spawn_point_index = randi_range(1, 4)
-	# Choose a random spawn point from the 4 available
+	var spawnlocation_count = get_node("../../SpawnsMob").get_child_count()
+	var spawn_point_index = randi_range(1, spawnlocation_count)
+	# Choose a random spawn point from the available ones
 	var mob_spawn_location = get_node("../../SpawnsMob/SpawnLocation" + str(spawn_point_index))
 
 	# We store the reference to the SpawnLocation node.
