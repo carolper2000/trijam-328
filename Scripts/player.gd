@@ -82,6 +82,7 @@ func _physics_process(delta: float) -> void:
 		Global.blood -= 1
 		if Global.blood <= 0:
 			gameOver()
+		blink_blood_meter(Color(1,0,0, 0.8), 0.05, 5)
 		updateBloodMeterGUI()
 	
 	# Update the kill count GUI
