@@ -96,6 +96,7 @@ func updateBloodMeterGUI():
 	BloodMeterAmount.text = str(Global.blood)
 
 func gameOver():
+	blink_animation(Color(1,0,0, 0.8), 0.1, 5)
 	print_debug("gameover")
 	get_tree().change_scene_to_file(end_scene)
 
