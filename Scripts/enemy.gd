@@ -10,9 +10,9 @@ extends CharacterBody3D
 
 # SIGNALS
 signal hit_player(enemy: Node3D)
-
+	
 var random_rotating_range = PI / 4
-var offset_range = 3.0
+var offset_range = 2.0
 
 var timer : float = 0.0
 var is_moving : bool = true
@@ -85,7 +85,8 @@ func initialize(start_position, player_instance):
 	# We position the mob by placing it at start_position
 	# and rotate it towards player.position, so it looks at the player.
 	look_at_from_position(start_position, player.position, Vector3.UP)
-	timer = pause_time - 3
+	var random_wait_at_start = randf_range(0,1)
+	timer = pause_time - random_wait_at_start
 	is_moving = false
 
 func _on_visibility_notifier_screen_exited() -> void:
