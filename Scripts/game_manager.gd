@@ -6,7 +6,7 @@ extends Node
 @onready var MobTimer = $"MobTimer"
 
 @export var initial_spawn_interval = 2.5
-@export var spawn_interval_decrease = 0.4
+@export var spawn_interval_decrease = 0.8
 
 var previous_kills_checkpoint = 0
 
@@ -61,4 +61,4 @@ func _on_hit_player(enemy: Node3D):
 	if Global.blood <= 0:
 		Player.gameOver()
 	Player.updateBloodMeterGUI()
-	Player.blink_blood_meter(Color(1,0,0, 0.8), 0.05, 5)
+	Player.blink_animation(Color(1,0,0, 0.8), 0.07, 1)

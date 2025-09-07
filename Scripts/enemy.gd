@@ -11,7 +11,8 @@ extends CharacterBody3D
 # SIGNALS
 signal hit_player(enemy: Node3D)
 
-var random_rotating_range = PI / 8
+var random_rotating_range = PI / 4
+var offset_range = 3.0
 
 var timer : float = 0.0
 var is_moving : bool = true
@@ -58,8 +59,11 @@ func _physics_process(_delta):
 			timer = 0.0
 			is_moving = true
 			# Nouvelle direction vers le joueur
-			look_at(player.global_position, Vector3.UP)
-			rotate_y(randf_range(-random_rotating_range, random_rotating_range))
+			var random_offset = randf_range(-offset_range, offset_range)
+			var direction_to_player = (player.global_position - global_position).normalized()
+			var offset_target = player.global_position + direction_to_player.cross(Vector3.UP) * random_offset
+
+			look_at(offset_target, Vector3.UP)
 			var random_speed = randi_range(min_speed, max_speed)
 			velocity = Vector3.FORWARD * random_speed
 			velocity = velocity.rotated(Vector3.UP, rotation.y)
@@ -81,16 +85,8 @@ func initialize(start_position, player_instance):
 	# We position the mob by placing it at start_position
 	# and rotate it towards player.position, so it looks at the player.
 	look_at_from_position(start_position, player.position, Vector3.UP)
-	# Rotate this mob randomly within range of -30 to 30 degrees
-	# so that it doesn't move directly towards the player.
-	rotate_y(randf_range(-deg_to_rad(30), deg_to_rad(30)))
-	# We calculate a random speed (integer)
-	var random_speed = randi_range(min_speed, max_speed)
-	# We calculate a forward velocity that represents the speed.
-	velocity = Vector3.FORWARD * random_speed
-	# We then rotate the velocity vector based on the mob's Y rotation
-	# in order to move in the direction the mob is looking.
-	velocity = velocity.rotated(Vector3.UP, rotation.y)
+	timer = pause_time - 3
+	is_moving = false
 
 func _on_visibility_notifier_screen_exited() -> void:
 	queue_free

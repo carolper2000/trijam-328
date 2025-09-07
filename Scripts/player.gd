@@ -111,10 +111,11 @@ func blink_animation(
 
 	# set visible
 	for i in range(count):
-		AnimationRect.visible = true
-		await get_tree().create_timer(time).timeout
-		AnimationRect.visible = false
-		await get_tree().create_timer(time).timeout
+		if get_tree():
+			AnimationRect.visible = true
+			await get_tree().create_timer(time).timeout
+			AnimationRect.visible = false
+			await get_tree().create_timer(time).timeout
 	
 	AnimationRect.visible = false
 
@@ -133,9 +134,9 @@ func blink_blood_meter(
 
 	print("[Player] Blink blood meter")
 	for i in range(count):
-		style_box.bg_color = color
 		# if get_tree not = null
 		if get_tree():	
+			style_box.bg_color = color
 			await get_tree().create_timer(time).timeout
 			style_box.bg_color = initial_color
 			await get_tree().create_timer(time).timeout

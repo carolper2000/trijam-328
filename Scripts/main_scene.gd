@@ -15,3 +15,11 @@ func _ready() -> void:
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("restart"):
 		get_tree().change_scene_to_file(main_scene)
+
+	if Input.is_action_just_pressed("mouse_capture_toogle"):
+		if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
+			print("MOUSE : CAPTURED")
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		elif Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+			print("MOUSE : RELEASE")
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
